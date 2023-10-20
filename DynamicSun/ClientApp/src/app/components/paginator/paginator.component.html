@@ -1,0 +1,18 @@
+<div class="pagination-lg">
+  <div >
+    <button class="pagination-prev" (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <span class="current-page">
+      Page {{currentPage}} of {{ totalPages }}
+    </span>
+    <button class="pagination-next" (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+  <div>
+    <input type="number"
+           placeholder="Перейти на страницу "
+           inputmode="none"
+           class="input-page"
+           [max]="totalPages"
+           [min]="1"
+           (change)="onPageChange($any($event.target).valueAsNumber)">
+  </div>
+</div>

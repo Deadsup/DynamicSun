@@ -170,6 +170,7 @@ BundleArtifacts/
 !*.[Cc]ache/
 
 # Others
+.angular/cache/14.0.3
 ClientBin/
 ~$*
 *~

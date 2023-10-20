@@ -1,0 +1,26 @@
+
+th {
+  vertical-align: middle;
+}
+
+.filter-button {
+  min-width: 200px;
+}
+
+.thead-dark {
+  background-color:#212529;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+.weather-table-wrapper {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 2%;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}

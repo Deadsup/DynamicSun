@@ -1,0 +1,141 @@
+
+  <div class="weather-table-wrapper">
+    <div style="display: flex; width: 100%; margin-bottom: 1vh">
+      <select [(ngModel)]="queryParams.take" (input)="onSelect($event)" class="form-select" style="margin: 10px" aria-label="Default select example">
+        <option value=10>10</option>
+        <option value=25>25</option>
+        <option value=50>50</option>
+      </select>
+
+      <select [(ngModel)]="queryParams.month" (input)="onSelectMonth($event)" style="margin: 10px" class="form-select" aria-label="Default select example">
+        <option [value]="0" [disabled]="true" >Месяц</option>
+        <option value=1>Январь</option>
+        <option value=2>Февраль</option>
+        <option value=3>Апрель</option>
+        <option value=4>Март</option>
+        <option value=5>Май</option>
+        <option value=6>Июнь</option>
+        <option value=7>Июль</option>
+        <option value=8>Август</option>
+        <option value=9>Сентябрь</option>
+        <option value=10>Октябрь</option>
+        <option value=11>Ноябрь</option>
+        <option value=12>Декабрь</option>
+      </select>
+
+      <select [(ngModel)]="queryParams.year"  (input)="onSelectYear($event)" style="margin: 10px"  class="form-select" aria-label="Default select example">
+        <option [value]="0" [disabled]="true" >Год</option>
+        <ng-container *ngFor="let year of years">
+            <option [value]="year">
+            {{year}}
+            </option>
+          </ng-container>
+      </select>
+      <button class="btn btn-success filter-button" style="margin: 10px"  (click)="onFiltersApply()">
+        Применить фильтры
+      </button>
+      <button  class="btn btn-danger filter-button" style="margin: 10px" (click)="onFilterClear()">
+      <label>Очистить фильтры</label>
+      </button>
+
+    </div>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" (click)="onSelectOrder('1')">
+            Дата
+          </th>
+          <th scope="col">
+            Время (Московское)
+          </th>
+          <th scope="col" (click)="onSelectOrder('3')">
+            T
+          </th>
+          <th scope="col" >
+            Отн. влажность воздуха, %
+          </th>
+          <th scope="col">
+          Td
+          </th>
+          <th scope="col">
+            Атм. давление, мм рт.ст.
+          </th>
+          <th scope="col">
+            Направление ветра
+          </th>
+          <th scope="col" (click)="onSelectOrder('2')">
+            Скорость ветра, м/с
+          </th>
+          <th scope="col">
+            Облачность, %
+          </th>
+          <th scope="col">
+            H
+          </th>
+          <th scope="col">
+            VV
+          </th>
+          <th scope="col">
+            Погодные явления
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="weatherList.length > 0 else emptyList">
+          <tr *ngFor="let weather of weatherList">
+            <td style="border: solid 1px grey;padding: 3px; text-align: center">
+              {{weather.date | date : 'dd.MM.yyyy'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.date | date : 'HH:mm'}}
+            </td>
+
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.temperature | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.airHumidity | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.td | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.atmPressure | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.windDirection}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.windSpeed | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.cloudCover | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.h | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+              {{weather.vv | number : '0.2-2'}}
+            </td>
+            <td style="border: solid 1px grey; padding: 3px">
+            {{weather.weatherEvent}}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <app-paginator #paginator
+                   *ngIf="weatherList.length > 0"
+                   [totalItems]="weatherCount"
+                   [itemsPerPage]="queryParams.take"
+                   (pageChanged)="onChangePage($event)">
+    </app-paginator>
+  </div>
+  <ng-template #emptyList>
+    <tr>
+      <td colspan="12" style="height: 40vh; text-align: center">
+        <h3>В базе данных нет записей по погоде</h3>
+      </td>
+    </tr>
+  </ng-template>
+

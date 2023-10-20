@@ -1,0 +1,64 @@
+.file-input {
+  display: none; /* Скрыть нативный input файла */
+}
+
+/* Стили для кастомной кнопки выбора файла */
+.file-label {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100vw;
+}
+
+.file-label:hover {
+  background-color: #0056b3;
+}
+
+.file-text {
+  margin-right: 10px;
+}
+
+.selected-file {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.clear-button {
+  background-color: #FF5733;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.clear-button:hover {
+  background-color: #E54728;
+}
+
+.upload-button {
+  background-color: #0da802;
+  color: #fff;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Изменение цвета кнопки при наведении курсора */
+.upload-button:hover {
+  background-color: #12d003;
+}
+
+.upload-button-text {
+  margin-right: 10px;
+}
+
+
+

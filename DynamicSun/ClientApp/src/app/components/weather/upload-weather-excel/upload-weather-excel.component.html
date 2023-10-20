@@ -1,0 +1,38 @@
+ <input #filesUpload
+         class="file-input"
+         type="file"
+         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+         (change)="onFileSelected($event)"
+         multiple>
+  <button class="file-label" (click)="filesUpload.click()">
+    <label class="file-text">Выбрать файлы</label>
+  </button>
+  <ng-container *ngIf="files.length > 0">
+    <div class="center">
+      <table class="table">
+        <thead>
+        <tr>
+           <th>Название файла</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let file of files">
+          <td class="selected-file"> {{file.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div style="display: flex;justify-content: flex-end">
+        <button class="btn btn-outline-success" style="margin: 1%" data-toggle="tooltip" data-placement="top" title="Отправить файлы" (click)="uploadFiles()">
+          <label>
+            Отправить
+          </label>
+        </button>
+        <button class="btn btn-outline-danger" style="margin: 1%" data-toggle="tooltip" data-placement="top" title="Очистить файлы"  (click)="files = []">
+          <label>
+            Очистить
+          </label>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+

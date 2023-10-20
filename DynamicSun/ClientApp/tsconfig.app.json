@@ -7,7 +7,9 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/app/models/Filters/enums/WeatherSortContext.ts",
+    "src/app/models/Filters/enums/OrderSort.ts"
   ],
   "include": [
     "src/**/*.d.ts"
